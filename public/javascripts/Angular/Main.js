@@ -64,7 +64,7 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         return xhr;
     }
     $scope.generateURL2 = function(){
-        
+
     };
     $scope.generateURL3 = function(){
         var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/";
@@ -94,6 +94,10 @@ policyLinksApp.config(['$routeProvider',
         }).
         when('/selectorPage',{
             templateUrl: '../view/selectorpage.ejs',
+            controller : 'LinkController'
+        }).
+        when('/image_preview',{
+            templateUrl: '../view/image_preview_page.ejs',
             controller : 'LinkController'
         }).
         otherwise({
