@@ -12,6 +12,7 @@
   <script src="/javascripts/angular/Main.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/javascript">
     function store(){
       var image, title, comment='';
@@ -89,29 +90,46 @@
       });
     });
 
+    var i = 2;
 
     function add() {
+      var divElementTitle = document.createElement("div");
+      divElementTitle.setAttribute("class","input-group col-lg-12");
 
-      var divElement = document.createElement("div");
-      divElement.setAttribute("class","input-group col-lg-6")
-//Create an input type dynamically.
-      var element = document.createElement("textarea");
+      var elementTitle = document.createElement("input");
+      var labelTitle = document.createElement("Label");
+      labelTitle.innerHTML = "Sub Title";
+      elementTitle.setAttribute("class", "form-control");
+      labelTitle.setAttribute("class", "input-group-addon");
+      labelTitle.setAttribute("id", "basic-addon1");
 
-//Create Labels
-      var label = document.createElement("Label");
-      label.innerHTML = "Comment";
-      var comment =
-//Assign different attributes to the element.
-              element.setAttribute("class", "form-control");
-      element.setAttribute("rows", "5");
-      element.setAttribute("id", "Comment2");
+        var divElement = document.createElement("div");
+        divElement.setAttribute("class","input-group col-lg-12")
 
-      label.setAttribute("class", "input-group-addon");
-      label.setAttribute("id", "basic-addon1");
-// 'foobar' is the div id, where new fields are to be added
-      var foo = document.getElementById("row2");
+      //Create an input type dynamically.
+        var element = document.createElement("textarea");
+
+      //Create Labels
+        var label = document.createElement("Label");
+        label.innerHTML = "Comment";
+        var comment =
+      //Assign different attributes to the element.
+                element.setAttribute("class", "form-control");
+        element.setAttribute("rows", "5");
+        element.setAttribute("id", "Comment2");
+
+        label.setAttribute("class", "input-group-addon");
+        label.setAttribute("id", "basic-addon1");
+        // 'foobar' is the div id, where new fields are to be added
+        var foo = document.getElementById("row" + i);
+        i++;
 
 //Append the element in page (in span).
+
+      foo.appendChild(labelTitle);
+      foo.appendChild(elementTitle);
+      foo = document.getElementById("row" + i);
+      i++;
       foo.appendChild(label);
       foo.appendChild(element);
     }

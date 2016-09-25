@@ -70,3 +70,6 @@ a {
   max-width: 100px;
   display: none;
 }
+#row2,#row3,#row4,#row5{
+  padding-top: 2%;
+}
