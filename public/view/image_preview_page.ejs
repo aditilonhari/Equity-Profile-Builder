@@ -1,0 +1,92 @@
+<div class="bs-example">
+    <div class="panel panel-default">
+        <div class="panel-heading">Customize your document</div>
+        <div class="panel-body">
+            <div id="pdfData">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- image-preview-filename input [CUT FROM HERE]-->
+                        <div class="input-group image-preview">
+                            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" id="image"/> <!-- rename it -->
+                    </div>
+                </span>
+                        </div><!-- /input-group image-preview [TO HERE]-->
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="input-group col-lg-12">
+                    <span class="input-group-addon" id="basic-addon1">Title   </span>
+                    <input type="text" class="form-control" placeholder="Enter your title" aria-describedby="basic-addon1" id="title">
+                </div>
+                <br>
+                <br>
+                <div class="input-group col-lg-12">
+                    <label class="input-group-addon" id="basic-addon1">Comment</label>
+                    <textarea class="form-control" rows="5" id="comment" placeholder="Add additional comments here"></textarea>
+                </div>
+                <br><br>
+                <div id = "row2" class="input-group col-lg-12" ></div>
+                <div id = "row3" class="input-group col-lg-12" ></div>
+                <div id = "row4" class="input-group col-lg-12" ></div>
+                <div id = "row5" class="input-group col-lg-12" ></div>
+
+                <div id = "row6" class="input-group col-lg-12" ></div>
+                <div id = "row7" class="input-group col-lg-12" ></div>
+                <div id = "row8" class="input-group col-lg-12" ></div>
+                <div id = "row9" class="input-group col-lg-12" ></div>
+
+            </div>
+                <div class=" col-lg-12 title">
+
+
+                    <input type="submit" id="btnNext" class="btn btn-primary"  value="Add Page" onClick="add()"/>
+                    <input type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="  View Document  " onclick="store()"/>
+
+
+                    <!-- Trigger the modal with a button -->
+
+
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-dialog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                <div class="modal-content" id="modal-content">
+                                    <div class="modal-header" id="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><span id="modal-title"></span></h4>
+                                    </div>
+                                    <div class="modal-body" id="modal-body">
+                                        <img src="../images/chart.png" />
+                                        <p><span id="modal-comment"></span></p>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
+                                        <input type="submit" class="btn btn-success"  value="  Generate PDF  " onclick="printPDF()"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

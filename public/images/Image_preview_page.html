@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy Link</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	function store(){
+	 var image, title, comment='';
+				if(typeof(Storage) !== "undefined") {
+
+					sessionStorage.setItem("image", document.getElementById("image").value);
+					sessionStorage.setItem("comment", document.getElementById("comment").value);
+					sessionStorage.setItem("title",document.getElementById("title").value);
+					
+					document.getElementById('modal-title').innerHTML = sessionStorage.getItem('title');
+					document.getElementById('modal-comment').innerHTML = sessionStorage.getItem('comment');
+					
+			}
+				else {
+        		alert("Sorry, your browser does not support web session storage...");
+        		}
+	}
+
+	$(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+});
+
+$(function() {
+    // Create the close button
+    var closebtn = $('<button/>', {
+        type:"button",
+        text: 'x',
+        id: 'close-preview',
+        style: 'font-size: initial;',
+    });
+    closebtn.attr("class","close pull-right");
+    // Set the popover default content
+    $('.image-preview').popover({
+        trigger:'manual',
+        html:true,
+        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+        content: "There's no image",
+        placement:'bottom'
+    });
+    // Clear event
+    $('.image-preview-clear').click(function(){
+        $('.image-preview').attr("data-content","").popover('hide');
+        $('.image-preview-filename').val("");
+        $('.image-preview-clear').hide();
+        $('.image-preview-input input:file').val("");
+        $(".image-preview-input-title").text("Browse"); 
+    }); 
+    // Create the preview image
+    $(".image-preview-input input:file").change(function (){     
+        var img = $('<img/>', {
+            id: 'dynamic',
+            width:250,
+            height:200
+        });      
+        var file = this.files[0];
+        var reader = new FileReader();
+        // Set preview image into the popover data-content
+        reader.onload = function (e) {
+            $(".image-preview-input-title").text("Change");
+            $(".image-preview-clear").show();
+            $(".image-preview-filename").val(file.name);            
+            img.attr('src', e.target.result);
+            $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+        }        
+        reader.readAsDataURL(file);
+    });  
+});
+
+
+function add() {
+
+var divElement = document.createElement("div");
+divElement.setAttribute("class","input-group col-lg-6")
+//Create an input type dynamically.
+var element = document.createElement("textarea");
+
+//Create Labels
+var label = document.createElement("Label");
+label.innerHTML = "Comment";     
+var comment = 
+//Assign different attributes to the element.
+element.setAttribute("class", "form-control");
+element.setAttribute("rows", "5");
+element.setAttribute("id", "Comment2");
+
+label.setAttribute("class", "input-group-addon");
+label.setAttribute("id", "basic-addon1");
+// 'foobar' is the div id, where new fields are to be added
+var foo = document.getElementById("row2");
+
+//Append the element in page (in span).
+foo.appendChild(label);
+foo.appendChild(element);
+}
+ function printPDF() {
+ 	var title = $("#modal-title").html();
+            var divContents = $("#modal-body").html();
+            var printWindow = window.open('', '', 'height=600,width=1000');
+            printWindow.document.write('<html><head><title><h1>');
+            printWindow.document.write(title);
+            printWindow.document.write('</h1></title>');
+            printWindow.document.write('</head><body><p>');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</p></body></html>');
+            printWindow.document.close();
+            printWindow.print();
+}
+</script>
+<style type="text/css">
+
+.img-responsive-height
+{
+  display: block;
+  width: auto;
+  max-height: 100%
+}
+    .bs-example{
+    	margin: 20px;
+    }
+
+    .container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+
+#dvPreview
+{
+   
+   max-height: 150px;
+   max-width: 100px;
+   display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="bs-example">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Customize your document</div>
+        <div class="panel-body">
+        	<div id="pdfData">
+
+<div class="row">    
+        <div class="col-lg-6">  
+            <!-- image-preview-filename input [CUT FROM HERE]-->
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" id="image"/> <!-- rename it -->
+                    </div>
+                </span>
+            </div><!-- /input-group image-preview [TO HERE]--> 
+        </div>
+        <div>
+        	
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="input-group col-lg-6">
+  <span class="input-group-addon" id="basic-addon1">Title   </span>
+  <input type="text" class="form-control" placeholder="Enter your title" aria-describedby="basic-addon1" id="title">
+</div>
+<br>
+<br>
+<div class="input-group col-lg-6">
+ <label class="input-group-addon" id="basic-addon1">Comment</label>
+  <textarea class="form-control" rows="5" id="comment" placeholder="Add additional comments here"></textarea>
+  </div>
+  <br><br>
+  <div class="row" id="row2"><div class="input-group col-lg-6" ></div></div>
+
+  </div>
+  <div class="row">
+<center>
+<div class=" col-lg-6">
+  
+  
+<input type="submit" id="btnNext" class="btn btn-primary"  value="Add Page" onClick="add()"/>
+    <input type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="  View Document  " onclick="store()"/>
+  
+  
+    <!-- Trigger the modal with a button -->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content" id="modal-content">
+      <div class="modal-header" id="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><span id="modal-title"></span></h4>
+      </div>
+      <div class="modal-body" id="modal-body">
+      	<img src="C:\Users\Public\Pictures\Sample Pictures\Desert.jpeg" />
+        <p><span id="modal-comment"></span></p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
+            <input type="submit" class="btn btn-success"  value="  Generate PDF  " onclick="printPDF()"/>
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+  
+</div>
+</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>                                		
