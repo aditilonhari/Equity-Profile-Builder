@@ -1,16 +1,18 @@
 <script type="text/javascript">
     function store(){
-        var image, title, comment='';
+        var image , title , comment , comment2 , title2;
         if(typeof(Storage) !== "undefined") {
 
             sessionStorage.setItem("image", document.getElementById("image").value);
-            sessionStorage.setItem("comment", document.getElementById("comment").value);
             sessionStorage.setItem("title",document.getElementById("title").value);
-            sessionStorage.setItem("comment2", document.getElementById("comment2").value);
-            sessionStorage.setItem("title2",document.getElementById("title2").value);
+            sessionStorage.setItem("comment", document.getElementById("comment").value);
+            //sessionStorage.setItem("title2",document.getElementById("title2").value);
+            //sessionStorage.setItem("comment2", document.getElementById("comment2").value);
 
             document.getElementById('modal-title').innerHTML = sessionStorage.getItem('title');
             document.getElementById('modal-comment').innerHTML = sessionStorage.getItem('comment');
+            //document.getElementById('modal-title2').innerHTML = sessionStorage.getItem('title2');
+            //document.getElementById('modal-comment2').innerHTML = sessionStorage.getItem('comment2');
 
         }
         else {
@@ -85,7 +87,7 @@
 
         var elementTitle = document.createElement("input");
         var labelTitle = document.createElement("Label");
-        labelTitle.innerHTML = "Sub Title";
+        labelTitle. innerHTML = "Sub Title";
         elementTitle.setAttribute("class", "form-control");
         labelTitle.setAttribute("class", "input-group-addon");
         labelTitle.setAttribute("id", "comment"+i);
@@ -103,7 +105,7 @@
                 //Assign different attributes to the element.
                 element.setAttribute("class", "form-control");
         element.setAttribute("rows", "5");
-        element.setAttribute("id", "Comment2");
+        element.setAttribute("id", "comment"+i);
 
         label.setAttribute("class", "input-group-addon");
         label.setAttribute("id", "title"+i);
@@ -206,10 +208,12 @@
                                     <div class="modal-header" id="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title"><span id="modal-title"></span></h4>
+                                        <h4 class="modal-title"><span id="modal-title2"></span></h4>
                                     </div>
                                     <div class="modal-body" id="modal-body">
-                                        <img src="../images/chart.png" style="width: 400px;height: 400px" />
+                                        <img src="../images/chart.png" style="width: 100%;height: 600px" />
                                         <p><span id="modal-comment"></span></p>
+                                        <p><span id="modal-comment2"></span></p>
                                     </div>
                                     <div class="modal-footer">
 
