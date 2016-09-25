@@ -29,7 +29,9 @@
         $("#economicbenefits").click(function () {
             $("#economicbenefits-breakdown").addClass('ng-show').removeClass('ng-hide');
         });
-
+        $("#generateImage").click(function () {
+            $("#url").addClass('ng-show').removeClass('ng-hide');
+        });
 
     });
 
@@ -170,13 +172,15 @@
                 <label>Breakdown</label>
                 <div class="form-group">
                     <select id="operation-economicbenefits" class="form-control" ng-model="form.selectedValue1">
-                        <option> Income</option>
-                        <option> Income gains</option>
-                        <option> Source of gains</option>
+                        <option>Income</option>
+                        <option>Income gains</option>
+                        <option>Source of gains</option>
                     </select>
                 </div>
             </div>
-            <button class="btn btn-success" ng-click="Generate">Generate Image</button>
+            <button class="btn btn-success" ng-click="generateURL3()" id="generateImage">Generate Image</button>
+            <a href={{url}} class="ng-hide" id="url">Click URL</a>
+
         </form>
     </div>
 </div>
