@@ -3,12 +3,21 @@
 <script>
     $(function() {
         $("#demographics").click(function(){
-            debugger;
             $("#demographics-breakdown").addClass('ng-show').removeClass('ng-hide');
+            //$("#demographics-breakdown-r1").attr("value",1);
         });
         $("#demographics-breakdown").click(function(){
             $("#demographics-filter1").addClass('ng-show').removeClass('ng-hide');
         });
+        $("#demographics-breakdown-r1").click(function () {
+            $("#demographics-breakdown-r1").attr("value",1);
+        });
+//        $("#demographics-filter1-r1").click(function () {
+//          $("#demographics-filter1-r1").attr("value",1);
+//        });
+//        $("#demographics-filter2-r2").click(function () {
+//            $("#demographics-filter2-r2").attr("value",1);
+//        });
     });
 
 </script>
@@ -23,27 +32,25 @@
             <div class="row">
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" id="demographics" name="demographics">Race/Ethnicity</label>
+                        <label><input type="radio" ng-model = "form.demographics" id="demographics"  name="demographics" value = 0>Race/Ethnicity</label>
                     </div>
                 </div>
             </div>
             <div id="demographics-breakdown"class="row ng-hide">
                 <label >Breakdown</label>
                 <div class="form-group">
-                    <div class="radio">
-                        <label ><input type="radio"   name="demographics-breakdown">Race/Ethnicity</label>
-                    </div>
+                    <select id="operation" class="form-control" ng-model = "form.selectedValue1" >
+                        <option selected> Race/Ethnicity</option>
+                    </select>
                 </div>
             </div>
             <div id = "demographics-filter1" class="row ng-hide">
                 <label>Filter</label>
                 <div class="form-group">
-                    <div class="radio">
-                        <label><input type="radio" id = "demographics-filter1" name="demographics-filter1">filter option 1</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" id = "demographics-filter2" name="demographics-filter2">filter option 2</label>
-                    </div>
+                    <select id="operation2" class="form-control" ng-model = "form.selectedValue2" >
+                        <option> Filter 1</option>
+                        <option> Filter 2</option>
+                    </select>
                 </div>
             </div>
             <button class="btn btn-success" ng-click = "generate();">Generate Image</button>

@@ -31,7 +31,7 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
     });
 
     $scope.generate = function(){
-        console.log("here");
+        console.log($scope.form);
     };
 }]);
 
