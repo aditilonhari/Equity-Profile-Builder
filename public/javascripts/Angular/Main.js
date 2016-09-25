@@ -11,6 +11,7 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
     // });
     // Simple GET request example:
     $scope.states = [];
+    $scope.region = "";
     $http({
         method: 'GET',
         url: '/api/getForm'
@@ -29,9 +30,24 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         // called asynchronously if an error occurs
         // or server returns response with an error status.
     });
+    $scope.saveRegion = function(){
+        debugger;
+        $scope.region = $scope.selectedValue.split(" ")[0];
+        $location.path('/selectorPage');
+    };
 
     $scope.generate = function(){
-        console.log($scope.form);
+        var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/";
+        if($scope.form.selectedValue == "Race/Ethnicity"){
+            baseURL += "Race~ethnicity/";
+        }
+        baseURL +=$scope.region;
+        console.log(baseURL);
+        // $http.post({
+        //     method:'GET',
+        //     url: 'api/generateURL'
+        // }).then(function successCallback(response){}, function errorCallBack(response){});
+        // console.log($scope.form);
     };
 }]);
 
