@@ -1,270 +1,179 @@
 <!-- This page is used to select all the attributes required to generate images. -->
 
 <script>
-    $(function() {
-        $("#demographics").click(function(){
+    $(function () {
+        //Tab1
+        $("#demographics").click(function () {
             $("#demographics-breakdown").addClass('ng-show').removeClass('ng-hide');
             //$("#demographics-breakdown-r1").attr("value",1);
         });
-        $("#demographics-breakdown").click(function(){
+        $("#demographics-breakdown").click(function () {
             $("#demographics-filter1").addClass('ng-show').removeClass('ng-hide');
         });
-        $("#demographics-breakdown-r1").click(function () {
-            $("#demographics-breakdown-r1").attr("value",1);
+
+        //Tab2
+        $("#equity1").click(function () {
+            $("#equity-breakdown1").addClass('ng-show').removeClass('ng-hide');
         });
-//        $("#demographics-filter1-r1").click(function () {
-//          $("#demographics-filter1-r1").attr("value",1);
-//        });
-//        $("#demographics-filter2-r2").click(function () {
-//            $("#demographics-filter2-r2").attr("value",1);
-//        });
+        $("#equity2").click(function () {
+            console.log("Inside equity2");
+            debugger;
+            $("#equity-breakdown2").addClass('ng-show').removeClass('ng-hide');
+        });
+        $("#operation1").click(function () {
+            $("#equity-filter1").addClass('ng-show').removeClass('ng-hide');
+            $("#equity-filter11").addClass('ng-show').removeClass('ng-hide');
+            //$("#operation2a").addClass('ng-show').removeClass('ng-hide');
+        });
+
+        $("#economicbenefits").click(function () {
+            $("#economicbenefits-breakdown").addClass('ng-show').removeClass('ng-hide');
+        });
+
+
     });
 
 </script>
 <div id="tabs" xmlns="http://www.w3.org/1999/html">
     <ul>
-        <li><a href="#tabs-1">Demographics</a></li>
-        <li><a href="#tabs-2">Equity</a></li>
-        <li><a href="#tabs-3">Economic Benefits</a></li>
+        <li><a href="#tabs-demographics">Demographics</a></li>
+        <li><a href="#tabs-equity">Equity</a></li>
+        <li><a href="#tabs-economicbenefits">Economic Benefits</a></li>
     </ul>
-    <div id="tabs-1">
-        <form id="demographics" class="demographics">
+    <div id="tabs-demographics">
+        <form id="demographics-tab" class="demographics">
             <div class="row">
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" ng-model = "form.demographics" id="demographics"  name="demographics" value = 0>Race/Ethnicity</label>
+                        <label><input type="radio" ng-model="form.demographics" id="demographics" name="demographics"
+                                      value=0>Race/Ethnicity</label>
                     </div>
                 </div>
             </div>
-            <div id="demographics-breakdown"class="row ng-hide">
-                <label >Breakdown</label>
+
+            <div id="demographics-breakdown" class="row ng-hide">
+                <label>Breakdown</label>
                 <div class="form-group">
-                    <select id="operation" class="form-control" ng-model = "form.selectedValue1" >
+                    <select id="operation" class="form-control" ng-model="form.selectedValue1">
                         <option selected> Race/Ethnicity</option>
                     </select>
                 </div>
             </div>
-            <div id = "demographics-filter1" class="row ng-hide">
-                <label>Filter</label>
+
+            <button class="btn btn-success" ng-click="generate();">Generate Image</button>
+        </form>
+    </div>
+
+    <div id="tabs-equity">
+        <form id="equity-tab" class="equity">
+            <div class="row">
                 <div class="form-group">
-                    <select id="operation2" class="form-control" ng-model = "form.selectedValue2" >
-                        <option> Filter 1</option>
-                        <option> Filter 2</option>
+                    <div class="radio">
+                        <label><input type="radio" ng-model="form.equity" id="equity1" name="equity" value=0> Working
+                            Poor</label>
+                    </div>
+
+                    <div class="radio">
+                        <label><input type="radio" ng-model="form.equity" id="equity2" name="equity" value=1> School
+                            Poverty</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="equity-breakdown1" class="row ng-hide">
+                <label>Breakdown</label>
+                <div class="form-group">
+                    <select id= "operation1" class="form-control" ng-model="form.selectedValue1a" >
+                            <option value="1"> Trend</option>
+                            <option value="2"> By Nativity</option>
                     </select>
                 </div>
             </div>
-            <button class="btn btn-success" ng-click = "generate();">Generate Image</button>
-        </form>
-    </div>
-    <div id="tabs-2">
-        <form id="Equity">
-            <div class="row">
+            <div id="equity-breakdown2" class="row ng-hide">
                 <div class="form-group">
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Working Poor" class="form-control" aria-label="...">
-                    </div>
-
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School Poverty" class="form-control" aria-label="...">
-                    </div>
+                    <select id="operation2" class="form-control" ng-model="form.selectedValue1b" class=" ng-hide">
+                        <option > Over Time</option>
+                        <option> By Race/Ethnicity</option>
+                    </select>
                 </div>
             </div>
 
-            <div>
-                <label>Breakdown</label>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="input-group ">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                            <input type="text" value="Trend"  aria-label="...">
-                        </div>
-
-
-                        <div class="input-group col-sm-4">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                            <input type="text" value="By Nativity" aria-label="...">
-                        </div>
+            <div id="equity-filter1" class="row ng-hide">
+                <label>Filter Option 1</label>
+                <div class="form-group" id="equity-filter11">
+                        <select class="form-control" ng-model="form.selectedValue2a">
+                            <option> Poverty Level:100</option>
+                            <option> Poverty Level:150</option>
+                            <option> Poverty Level:200</option>
+                        </select>
+                </div>
+                <div class="form-group" id="equity-filter12">
+                    <div id="operation2b" class="ng-hide">
+                        <select class="form-control" ng-model="form.selectedValue2b">
+                            <option> School_type:All_Public_schools</option>
+                            <option> School_type:Primary_schools</option>
+                            <option> School_type:Middle_schools</option>
+                            <option> School_type:High_schools</option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                    <div class="input-group col-sm-4">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Over Time" class="form-control" aria-label="...">
+                <div class="form-group" id="equity-filter13">
+                    <div id="operation2c" class=" ng-hide">
+                        <select class="form-control" ng-model="form.selectedValue2c">
+                            <option> School_type:All_Public_schools</option>
+                            <option> School_type:Primary_schools</option>
+                            <option> School_type:Middle_schools</option>
+                            <option> School_type:High_schools</option>
+                        </select>
                     </div>
-
-
-                    <div class="input-group col-sm-4">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="By race/Ethnicity" class="form-control" aria-label="...">
+                    <div id="operation2d" class=" ng-hide">
+                        <select class="form-control" ng-model="form.selectedValue2d">
+                            <option> Year 2000</option>
+                            <option> Year 2010</option>
+                            <option> Year 2014</option>
+                        </select>
                     </div>
-                    </div>
-                </div>
-                <label> Filter Option 1</label>
-                <div class="form-group">
-
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Poverty Level:100" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Poverty Level:150" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Poverty Level:200" class="form-control" aria-label="...">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:All_Public_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:Primary_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:Middle_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:High_schools" class="form-control" aria-label="...">
-                    </div>
-
-                </div>
-                <div class="form-group">
-
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Year 2000" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Year 2010" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Year 2014" class="form-control" aria-label="...">
-                    </div>
-                </div>
-
-                <label> Filter Option 2</label>
-                <div class="form-group">
-
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Year 2000" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Year 2012" class="form-control" aria-label="...">
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:All_Public_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:Primary_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:Middle_schools" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="School_type:High_schools" class="form-control" aria-label="...">
-                    </div>
-
                 </div>
             </div>
+            <div id="equity-filter2" class="row ng-hide">
+                <label>Filter Option 2</label>
+                <div class="form-group">
+                    <select id="operation2e" class="form-control" ng-model="form.selectedValue2e">
+                        <option> Year 2000</option>
+                        <option> Year 2012</option>
+                    </select>
+                    <select id="operation22" class="form-control" ng-model="form.selectedValue22">
+                        <option> School_type:All_Public_schools</option>
+                        <option> School_type:Primary_schools</option>
+                        <option> School_type:Middle_schools</option>
+                        <option> School_type:High_schools</option>
+                    </select>
+                </div>
+            </div>
+
             <button class="btn btn-success">Generate Image</button>
         </form>
     </div>
-    <div id="tabs-3">
+
+    <div id="tabs-economicbenefits">
         <form id="Economic Benefits">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                    <input type="text" value="Income Gains with Racial Equity" class="form-control" aria-label="...">
+            <div class="row">
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" ng-model="form.economicbenefits" id="economicbenefits" name="economicbenefits"
+                                      value=0>Income Gains with Racial Equity</label>
+                    </div>
                 </div>
             </div>
 
-            <div>
+            <div id="economicbenefits-breakdown" class="row ng-hide">
                 <label>Breakdown</label>
                 <div class="form-group">
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Income" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Income gains" class="form-control" aria-label="...">
-                    </div>
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Source of gains" class="form-control" aria-label="...">
-                    </div>
+                    <select id="operation-economicbenefits" class="form-control" ng-model="form.selectedValue1">
+                        <option> Income</option>
+                        <option> Income gains</option>
+                        <option> Source of gains</option>
+                    </select>
                 </div>
             </div>
             <button class="btn btn-success" ng-click="Generate">Generate Image</button>
