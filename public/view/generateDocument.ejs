@@ -1,0 +1,220 @@
+<!-- This is the home page to start with the workflow for document generation. Enter location in this page -->
+
+<script type="text/javascript">
+    function store() {
+        var image, title, comment = '';
+        if (typeof(Storage) !== "undefined") {
+
+            sessionStorage.setItem("image", document.getElementById("image").value);
+            sessionStorage.setItem("comment", document.getElementById("comment").value);
+            sessionStorage.setItem("title", document.getElementById("title").value);
+
+            document.getElementById('modal-title').innerHTML = sessionStorage.getItem('title');
+            document.getElementById('modal-comment').innerHTML = sessionStorage.getItem('comment');
+
+        }
+        else {
+            alert("Sorry, your browser does not support web session storage...");
+        }
+    }
+
+</script>
+
+<script>
+    $(document).on('click', '#close-preview', function () {
+        $('.image-preview').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+                function () {
+                    $('.image-preview').popover('show');
+                },
+                function () {
+                    $('.image-preview').popover('hide');
+                }
+        );
+    });
+
+    $(function () {
+        // Create the close button
+        var closebtn = $('<button/>', {
+            type: "button",
+            text: 'x',
+            id: 'close-preview',
+            style: 'font-size: initial;'
+        });
+        closebtn.attr("class", "close pull-right");
+        // Set the popover default content
+        $('.image-preview').popover({
+            trigger: 'manual',
+            html: true,
+            title: "<strong>Preview</strong>" + $(closebtn)[0].outerHTML,
+            content: "There's no image",
+            placement: 'bottom'
+        });
+        // Clear event
+        $('.image-preview-clear').click(function () {
+            $('.image-preview').attr("data-content", "").popover('hide');
+            $('.image-preview-filename').val("");
+            $('.image-preview-clear').hide();
+            $('.image-preview-input input:file').val("");
+            $(".image-preview-input-title").text("Browse");
+        });
+        // Create the preview image
+        $(".image-preview-input input:file").change(function () {
+            var img = $('<img/>', {
+                id: 'dynamic',
+                width: 250,
+                height: 200
+            });
+            var file = this.files[0];
+            var reader = new FileReader();
+            // Set preview image into the popover data-content
+            reader.onload = function (e) {
+                $(".image-preview-input-title").text("Change");
+                $(".image-preview-clear").show();
+                $(".image-preview-filename").val(file.name);
+                img.attr('src', e.target.result);
+                $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+</script>
+<style type="text/css">
+
+    .img-responsive-height {
+        display: block;
+        width: auto;
+        max-height: 100%
+    }
+
+    .bs-example {
+        margin: 20px;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
+
+    #dvPreview {
+
+        max-height: 150px;
+        max-width: 100px;
+        display: none;
+    }
+</style>
+
+<div class="bs-example">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">Customize your document</div>
+        <div class="panel-body">
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                    <div class="input-group image-preview">
+                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                        <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Clear
+                    </button>
+                            <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Browse</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"
+                               id="image"/> <!-- rename it -->
+                    </div>
+                </span>
+                    </div><!-- /input-group image-preview [TO HERE]-->
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="input-group col-lg-6">
+                <span class="input-group-addon" id="basic-addon1">Title   </span>
+                <input type="text" class="form-control" placeholder="Enter your title" aria-describedby="basic-addon1"
+                       id="title">
+            </div>
+            <br>
+            <br>
+            <div class="input-group col-lg-6">
+                <label class="input-group-addon" id="basic-addon1">Comment</label>
+                <textarea class="form-control" rows="5" id="comment"
+                          placeholder="Add additional comments here"></textarea>
+            </div>
+            <br><br>
+            <div class="row">
+                <center>
+                    <div class=" col-lg-6">
+
+                        <a href="#" class="btn btn-primary" role="button">Next Page</a>
+                        <input type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal"
+                               value="  View Document  " onclick="store()"/>
+                        <!-- Trigger the modal with a button -->
+
+
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title"><span id="modal-title"></span></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="C:\Users\Public\Pictures\Sample Pictures\Desert.jpeg"/>
+                                            <p><span id="modal-comment"></span></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Edit
+                                            </button>
+                                            <a href="#" class="btn btn-success" role="button">Generate PDF</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
