@@ -63,6 +63,9 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         }
         return xhr;
     }
+    $scope.generateURL2 = function(){
+        
+    };
     $scope.generateURL3 = function(){
         var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/";
         if($scope.form.economicbenefits == "Income Gains with Racial Equity"){
