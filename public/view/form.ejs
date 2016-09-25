@@ -1,3 +1,12 @@
-<h1>
-    Hello world
-</h1>
+<h1>Please Enter Location</h1>
+<form>
+    <div class="form-group">
+        <label>Enter State/Region/Province</label>
+        <!--<input class="form-control" type="text" required ng-model="form.state" name="state" id="state" title="State/Provice/City" placeholder="State/Province/City">-->
+        <select id="operation" class="form-control" ng-model = "selectedValue" >
+        <option ng-repeat="state in states">{{state.name}} {{state.country}}</option>
+        </select>
+        <button type="submit" ng-click="go();" class="btn btn-success">Go</button>
+    </div>
+</form>
+

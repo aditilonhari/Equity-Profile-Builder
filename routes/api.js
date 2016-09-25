@@ -3,9 +3,11 @@
  */
 var express = require('express');
 var router = express.Router();
+var provinces = require('provinces');
+
 console.log("Some data 111");
 router.get('/getForm',function(req, res, next){
-    res.send({"name":"rahil","age":25});
+    res.send(provinces);
     //console.log("Some data");
 });
 

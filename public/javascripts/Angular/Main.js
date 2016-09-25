@@ -10,18 +10,27 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
     //     console.log(result);
     // });
     // Simple GET request example:
+    $scope.states = [];
     $http({
         method: 'GET',
         url: '/api/getForm'
     }).then(function successCallback(response) {
         // this callback will be called asynchronously
         // when the response is available
+
+        for(obj in response.data){
+            if(response.data[obj].country == "US"){
+                $scope.states.push(response.data[obj]);
+            }
+        }
         console.log("SuccessCall back")
     }, function errorCallback(response) {
         console.log("error call back")
         // called asynchronously if an error occurs
         // or server returns response with an error status.
     });
+
+    $scope.go = function(){};
 }]);
 
 //Routes
