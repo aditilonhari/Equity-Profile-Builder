@@ -42,6 +42,10 @@ policyLinksApp.config(['$routeProvider',
             templateUrl: '../view/form.ejs',
             controller : 'LinkController'
         }).
+        when('/selectorPage',{
+            templateUrl: '../view/selectorpage.ejs',
+            controller : 'LinkController'
+        }).
         otherwise({
             redirectTo: "/"
         })
