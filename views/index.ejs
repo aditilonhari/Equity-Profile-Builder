@@ -136,7 +136,7 @@
     function printPDF() {
       var title = $("#modal-title").html();
       var divContents = $("#modal-body").html();
-      var printWindow = window.open('', '', 'height=600,width=1000');
+      var printWindow = window.open('', '');
       printWindow.document.write('<html><head><title><h1>');
       printWindow.document.write(title);
       printWindow.document.write('</h1></title>');
