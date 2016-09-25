@@ -30,7 +30,9 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         // or server returns response with an error status.
     });
 
-    $scope.go = function(){};
+    $scope.generate = function(){
+        console.log("here");
+    };
 }]);
 
 //Routes

@@ -1,4 +1,17 @@
 <!-- This page is used to select all the attributes required to generate images. -->
+
+<script>
+    $(function() {
+        $("#demographics").click(function(){
+            debugger;
+            $("#demographics-breakdown").addClass('ng-show').removeClass('ng-hide');
+        });
+        $("#demographics-breakdown").click(function(){
+            $("#demographics-filter1").addClass('ng-show').removeClass('ng-hide');
+        });
+    });
+
+</script>
 <div id="tabs" xmlns="http://www.w3.org/1999/html">
     <ul>
         <li><a href="#tabs-1">Demographics</a></li>
@@ -9,28 +22,31 @@
         <form id="demographics" class="demographics">
             <div class="row">
                 <div class="form-group">
-                    <div class="input-group col-sm-4">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                        <input type="text" value="Race/ethnicity" class="form-control" aria-label="...">
+                    <div class="radio">
+                        <label><input type="radio" id="demographics" name="demographics">Race/Ethnicity</label>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div>
-                    <label>Breakdown</label>
-                    <div class="form-group">
-                        <div class="input-group col-sm-4">
-                    <span class="input-group-addon">
-                            <input type="radio" aria-label="...">
-                    </span>
-                            <input type="text" value="Racial Ethnicity Composition" class="form-control"
-                                   aria-label="...">
-                        </div>
+            <div id="demographics-breakdown"class="row ng-hide">
+                <label >Breakdown</label>
+                <div class="form-group">
+                    <div class="radio">
+                        <label ><input type="radio"   name="demographics-breakdown">Race/Ethnicity</label>
                     </div>
                 </div>
             </div>
+            <div id = "demographics-filter1" class="row ng-hide">
+                <label>Filter</label>
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" id = "demographics-filter1" name="demographics-filter1">filter option 1</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" id = "demographics-filter2" name="demographics-filter2">filter option 2</label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success" ng-click = "generate();">Generate Image</button>
         </form>
     </div>
     <div id="tabs-2">
@@ -207,7 +223,7 @@
 
                 </div>
             </div>
-
+            <button class="btn btn-success">Generate Image</button>
         </form>
     </div>
     <div id="tabs-3">
@@ -244,8 +260,7 @@
                     </div>
                 </div>
             </div>
-
-
+            <button class="btn btn-success" ng-click="Generate">Generate Image</button>
         </form>
     </div>
 </div>
