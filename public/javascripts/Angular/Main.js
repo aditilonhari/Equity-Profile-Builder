@@ -120,6 +120,8 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         }
         if($scope.m2 == "By Race/Ethnicity"){
             baseURL += "By_race~ethnicity:35576/";
+            baseURL += name;
+            baseURL += "/"+ "false"+ "/";
         }
 
         if($scope.form.selectedValue2c == "School_type:All_Public_schools"){
@@ -135,14 +137,14 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
             baseURL += "School_type:High_schools/";
         }
 
-        if($scope.form.selectedValue2d == "Year 2000"){
-            baseURL += "Year:2000/";
+        if($scope.form.selectedValue2d == "Year(s):2000"){
+            baseURL += "Year(s):2000/";
         }
-        if($scope.form.selectedValue2d == "Year 2010"){
-            baseURL += "Year:2010/";
+        if($scope.form.selectedValue2d == "Year(s):2010"){
+            baseURL += "Year(s):2010/";
         }
-        if($scope.form.selectedValue2d == "Year 2014"){
-            baseURL += "Year:2000/";
+        if($scope.form.selectedValue2d == "Year(s):2014"){
+            baseURL += "Year(s):2014/";
         }
 
         if($scope.form.selectedValue2e == "School_type:All_Public_schools"){
