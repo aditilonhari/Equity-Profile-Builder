@@ -94,6 +94,7 @@ policyLinksApp.config(['$routeProvider',
             controller : 'LinkController'
         }).
         otherwise({
-            redirectTo: "/"
+            templateUrl: '../view/home.ejs',
+            controller : 'LinkController'
         })
     }]);

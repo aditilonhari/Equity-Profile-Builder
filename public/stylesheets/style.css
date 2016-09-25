@@ -3,8 +3,26 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: cornsilk;
   color: saddlebrown;
+  margin-bottom: 20px;
 }
 
 a {
   color: #00B7FF;
+}
+.title{
+  text-align: center;
+}
+#link{
+  color: white;
+  text-decoration: none;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 70%;
+  margin: auto;
+}
+.container_main{
+  padding-left: 30%;
+  padding-right: 30%;
 }
