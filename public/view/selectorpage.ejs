@@ -33,6 +33,10 @@
         $("#generateImage").click(function () {
             $("#url").addClass('ng-show').removeClass('ng-hide');
         });
+        $("#generateImage1").click(function () {
+            debugger;
+            $("#url1").addClass('ng-show').removeClass('ng-hide');
+        });
 
     });
 
@@ -50,7 +54,7 @@
                 <div class="form-group">
                     <div class="radio">
                         <label><input type="radio" ng-model="form.demographics" id="demographics" name="demographics"
-                                      value=0>Race/Ethnicity</label>
+                                      value=0>Race Ethnicity</label>
                     </div>
                 </div>
             </div>
@@ -58,13 +62,14 @@
             <div id="demographics-breakdown" class="row ng-hide">
                 <label>Breakdown</label>
                 <div class="form-group">
-                    <select id="operation" class="form-control" ng-model="form.selectedValue1">
-                        <option selected> Race/Ethnicity</option>
+                    <select id="operation" class="form-control" ng-model="form.selectedValue11">
+                        <option selected> Racial/ethnic composition</option>
                     </select>
                 </div>
             </div>
 
-            <button class="btn btn-success" ng-click="generate();">Generate Image</button>
+            <button class="btn btn-success" ng-click="generateURL1();" id="generateImage" >Generate Image</button>
+            <a href={{url}} id="url" class="ng-hide">Download Image</a>
         </form>
     </div>
 
@@ -73,13 +78,11 @@
             <div class="row">
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" ng-model="form.equity" id="equity1" name="equity" value=0> Working
-                            Poor</label>
+                        <label><input type="radio" ng-model="form.equity1" id="equity1" name="equity" value="Working Poor"> Working Poor</label>
                     </div>
 
                     <div class="radio">
-                        <label><input type="radio" ng-model="form.equity" id="equity2" name="equity" value=1> School
-                            Poverty</label>
+                        <label><input type="radio" ng-model="form.equity2" id="equity2" name="equity" value="School Poverty"> School Poverty</label>
                     </div>
                 </div>
             </div>
@@ -88,27 +91,27 @@
                 <label>Breakdown</label>
                 <div class="form-group">
                     <select id="operation1" class="form-control" ng-model="m1">
-                        <option value="1"> Trend</option>
-                        <option value="2"> By Nativity</option>
+                        <option value="Trend"> Trend</option>
+                        <option value="By Nativity"> By Nativity</option>
                     </select>
 
-                    <div ng-show="m1=='1' || m1=='2'">
+                    <div ng-show="m1=='Trend' || m1=='By Nativity'">
                         <label>Filter Option 1</label>
                         <div class="form-group" id="equity-filter11">
                             <select class="form-control" ng-model="form.selectedValue2a">
-                                <option value="3"> Poverty Level:100</option>
-                                <option value="4"> Poverty Level:150</option>
-                                <option value="5"> Poverty Level:200</option>
+                                <option value="Poverty Level:100"> Poverty Level:100</option>
+                                <option value="Poverty Level:150"> Poverty Level:150</option>
+                                <option value="Poverty Level:200"> Poverty Level:200</option>
                             </select>
                         </div>
                     </div>
 
-                    <div ng-show="m1=='2'">
+                    <div ng-show="m1=='By Nativity'">
                         <label>Filter Option 2</label>
                         <div class="form-group" id="equity-filter11">
                             <select class="form-control" ng-model="form.selectedValue2b">
-                                <option value="6"> Year 2000</option>
-                                <option value="7"> Year 2012</option>
+                                <option value="Year 2000"> Year 2000</option>
+                                <option value="Year 2012"> Year 2012</option>
                             </select>
                         </div>
                     </div>
@@ -119,38 +122,38 @@
                 <label>Breakdown</label>
                 <div class="form-group">
                     <select id="operation2" class="form-control" ng-model="m2">
-                        <option value="8"> Over Time</option>
-                        <option value="9"> By Race/Ethnicity</option>
+                        <option value="Over Time"> Over Time</option>
+                        <option value="By Race/Ethnicity"> By Race/Ethnicity</option>
                     </select>
 
-                    <div ng-show="m2=='8'">
+                    <div ng-show="m2=='Over Time'">
                         <label>Filter Option 1</label>
                         <div class="form-group" id="equity-filter11">
                             <select class="form-control" ng-model="form.selectedValue2c">
-                                <option> School_type:All_Public_schools</option>
-                                <option> School_type:Primary_schools</option>
-                                <option> School_type:Middle_schools</option>
-                                <option> School_type:High_schools</option>
+                                <option value="School_type:All_Public_schools"> School_type:All_Public_schools</option>
+                                <option value="School_type:Primary_schools"> School_type:Primary_schools</option>
+                                <option value="School_type:Middle_schools"> School_type:Middle_schools</option>
+                                <option value="School_type:High_schools"> School_type:High_schools</option>
                             </select>
                         </div>
                     </div>
 
-                    <div ng-show="m2=='9'">
+                    <div ng-show="m2=='By Race/Ethnicity'">
                         <label>Filter Option 1</label>
                         <div class="form-group" id="equity-filter11">
                             <select class="form-control" ng-model="form.selectedValue2d">
-                                <option> Year 2000</option>
-                                <option> Year 2010</option>
-                                <option> Year 2014</option>
+                                <option value="Year 2000"> Year 2000</option>
+                                <option value="Year 2010"> Year 2010</option>
+                                <option value="Year 2004"> Year 2014</option>
                             </select>
                         </div>
                         <label>Filter Option 2</label>
                         <div class="form-group" id="equity-filter11">
                             <select id="operation22" class="form-control" ng-model="form.selectedValue2e">
-                                <option> School_type:All_Public_schools</option>
-                                <option> School_type:Primary_schools</option>
-                                <option> School_type:Middle_schools</option>
-                                <option> School_type:High_schools</option>
+                                <option value="School_type:All_Public_schools"> School_type:All_Public_schools</option>
+                                <option value="School_type:Primary_schools"> School_type:Primary_schools</option>
+                                <option value="School_type:Middle_schools"> School_type:Middle_schools</option>
+                                <option value="School_type:High_schools"> School_type:High_schools</option>
                             </select>
 
                         </div>
@@ -158,8 +161,8 @@
                 </div>
             </div>
 
-            <button class="btn btn-success" ng-click="generateURL2()" id="generateImage">Generate URL</button>
-            <a href={{url}} id="url" class="ng-hide">Download Image</a>
+            <button class="btn btn-success" ng-click="generateURL2()" id="generateImage1">Generate URL</button>
+            <a href={{url}} id="url1" class="ng-hide">Download Image</a>
         </form>
     </div>
 
@@ -189,6 +192,11 @@
             <button class="btn btn-success" ng-click="generateURL3()" id="generateImage">Generate URL</button>
             <a href={{url}} id="url" class="ng-hide">Download Image</a>
         </form>
+    </div>
+</div>
+<div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" ng-click="generateDocument()">Generate Document</button>
     </div>
 </div>
 <script>

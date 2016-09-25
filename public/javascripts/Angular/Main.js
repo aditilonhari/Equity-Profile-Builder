@@ -1,7 +1,7 @@
 /**
  * Created by rahilvora on 9/24/16.
  */
-
+var name = "";
 var policyLinksApp = angular.module("policyLinksApp",["ngRoute"]);
 
 policyLinksApp.controller("LinkController",["$scope","$http","$location", function($scope, $http, $location){
@@ -63,9 +63,105 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
         }
         return xhr;
     }
-    $scope.generateURL2 = function(){
 
+    $scope.generateURL1 = function() {
+        var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/Race~ethnicity/";
+
+
+        if($scope.form.selectedValue11 == "Racial/ethnic composition"){
+            baseURL += "Racial~ethnic_composition:32756/";
+        }
+        baseURL +=name;
+        console.log(baseURL);
+        $scope.url = baseURL;
     };
+
+    $scope.generateURL2 = function(){
+        var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/";
+
+        if($scope.form.equity1 == "Working Poor"){
+            console.log("Inside Working Poor");
+            baseURL += "Working_poor/";
+        }
+
+        if($scope.m1 == "Trend"){
+            baseURL += "Trend:40221/";
+            baseURL += name;
+            baseURL += "/"+ "false"+ "/";
+        }
+        if($scope.m1 == "By Nativity"){
+            baseURL += "By_nativity:40276/";
+            baseURL += name;
+            baseURL += "/"+ "false"+ "/";
+        }
+
+        if($scope.form.selectedValue2a == "Poverty Level:100"){
+            baseURL += "Poverty_Level:100/";
+        }
+        if($scope.form.selectedValue2a == "Poverty Level:150"){
+            baseURL += "Poverty_Level:150/";
+        }
+        if($scope.form.selectedValue2a == "Poverty Level:200"){
+            baseURL += "Poverty_Level:200/";
+        }
+
+        if($scope.form.selectedValue2b == "Year 2000"){
+            baseURL += "Year:2000/";
+        }
+        if($scope.form.selectedValue2b == "Year 2012"){
+            baseURL += "Year:2012/";
+        }
+
+        if($scope.m2 == "Over Time"){
+            baseURL += "Over_time:35536/";
+            baseURL += name;
+            baseURL += "/"+ "false"+ "/";
+
+        }
+        if($scope.m2 == "By Race/Ethnicity"){
+            baseURL += "By_race~ethnicity:35576/";
+        }
+
+        if($scope.form.selectedValue2c == "School_type:All_Public_schools"){
+            baseURL += "School_type:All_Public_schools/";
+        }
+        if($scope.form.selectedValue2c == "School_type:Primary_schools"){
+            baseURL += "School_type:Primary_schools/";
+        }
+        if($scope.form.selectedValue2c == "School_type:Middle_schools"){
+            baseURL += "School_type:Middle_schools/";
+        }
+        if($scope.form.selectedValue2c == "School_type:High_schools"){
+            baseURL += "School_type:High_schools/";
+        }
+
+        if($scope.form.selectedValue2d == "Year 2000"){
+            baseURL += "Year:2000/";
+        }
+        if($scope.form.selectedValue2d == "Year 2010"){
+            baseURL += "Year:2010/";
+        }
+        if($scope.form.selectedValue2d == "Year 2014"){
+            baseURL += "Year:2000/";
+        }
+
+        if($scope.form.selectedValue2e == "School_type:All_Public_schools"){
+            baseURL += "School_type:All_Public_schools/";
+        }
+        if($scope.form.selectedValue2e == "School_type:Primary_schools"){
+            baseURL += "School_type:Primary_schools/";
+        }
+        if($scope.form.selectedValue2e == "School_type:Middle_schools"){
+            baseURL += "School_type:Middle_schools/";
+        }
+        if($scope.form.selectedValue2e == "School_type:High_schools"){
+            baseURL += "School_type:High_schools/";
+        }
+        //baseURL +=name;
+        console.log(baseURL);
+        $scope.url = baseURL;
+    };
+
     $scope.generateURL3 = function(){
         var baseURL = "http://107.170.124.232/export/url?url=http://nationalequityatlas.org/indicators/";
         if($scope.form.economicbenefits == "Income Gains with Racial Equity"){
@@ -77,7 +173,7 @@ policyLinksApp.controller("LinkController",["$scope","$http","$location", functi
             baseURL += "Income_gains:32776/";
         if($scope.form.selectedValue1 == "Source of gains")
             baseURL += "Source_of_gains:32781/";
-        baseURL +=$scope.region;
+        baseURL +=name;
         console.log(baseURL);
         $scope.url = baseURL;
     };
@@ -95,6 +191,10 @@ policyLinksApp.config(['$routeProvider',
         when('/selectorPage',{
             templateUrl: '../view/selectorpage.ejs',
             controller : 'LinkController'
+        }).
+            when('/generateDocument',{
+            templateUrl: '../generateDocument.ejs',
+            controllerl: 'LinkController'
         }).
         when('/image_preview',{
             templateUrl: '../view/image_preview_page.ejs',
